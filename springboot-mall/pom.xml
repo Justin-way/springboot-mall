@@ -29,7 +29,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -39,15 +38,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
