@@ -1,12 +1,14 @@
 package com.wayneyeh.springbootmall.model;
 
+import com.wayneyeh.springbootmall.constant.ProdutCategory;
+
 import java.util.Date;
 
 public class Product {
 
     private Integer productId;
     private String prodcutName;
-    private String category;
+    private ProdutCategory category; //無法知道知道有哪些種類的資訊 要用String改成用Enum
     private String imageUrl;
     private Integer price;
     private Integer stock;
@@ -30,11 +32,11 @@ public class Product {
         this.prodcutName = prodcutName;
     }
 
-    public String getCategory() {
+    public ProdutCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(ProdutCategory category) {
         this.category = category;
     }
 
