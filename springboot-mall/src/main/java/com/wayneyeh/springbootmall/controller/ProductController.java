@@ -15,15 +15,13 @@ public class ProductController {
     @Autowired
     ProdcutService prodcutService;
 
-    @GetMapping("/products/{prodictId}")
-    public ResponseEntity<Product> getProdct(@PathVariable Integer prodictId) {
-        Product product = prodcutService.getProductById(prodictId);
+    @GetMapping("/products/{productId}")
+    public ResponseEntity<Product> getProdct(@PathVariable Integer productId) {
+        Product product = prodcutService.getProductById(productId);
 
         if (product != null) {
             return ResponseEntity.status(HttpStatus.OK).body(product);
         } else
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
-
-
 }
