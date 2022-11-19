@@ -1,28 +1,22 @@
-package com.wayneyeh.springbootmall.model;
+package com.wayneyeh.springbootmall.dto;
 
 import com.wayneyeh.springbootmall.constant.ProdutCategory;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-public class Product {
-
-    private Integer productId;
+public class ProductRequest {
+    @NotNull
     private String productName;
-    private ProdutCategory category; //無法知道知道有哪些種類的資訊 要用String改成用Enum
+
+    private ProdutCategory category;
+    @NotNull
     private String imageUrl;
+    @NotNull
     private Integer price;
+    @NotNull
     private Integer stock;
     private String description;
-    private Date createDate;
-    private Date lastModifiedDate;
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
 
     public String getProductName() {
         return productName;
@@ -71,21 +65,4 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
 }
-
