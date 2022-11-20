@@ -9,11 +9,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class ProductController {
 
     @Autowired
     ProdcutService prodcutService;
+
+    @GetMapping("/products") //一定要加s
+    public ResponseEntity<List<Product>> getProducts(){
+        List<Product> productList = prodcutService.getProducts();
+
+        return ResponseEntity.status(HttpStatus.OK).body(productList);
+    }
 
     @GetMapping("/products/{productId}")
     public ResponseEntity<Product> getProdct(@PathVariable Integer productId) {
@@ -51,5 +60,12 @@ public class ProductController {
         Product updatedProduct = prodcutService.getProductById(productId);
 
         return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
+    }
+
+    @DeleteMapping("/products/{productId}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Integer productId){
+        prodcutService.deleteProductById(productId);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
