@@ -1,6 +1,6 @@
 package com.wayneyeh.springbootmall.constant;
 
-public enum ProdutCategory {
+public enum ProductCategory {
 
     FOOD,
     CAR,

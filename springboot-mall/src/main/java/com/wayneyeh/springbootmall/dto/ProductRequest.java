@@ -1,6 +1,6 @@
 package com.wayneyeh.springbootmall.dto;
 
-import com.wayneyeh.springbootmall.constant.ProdutCategory;
+import com.wayneyeh.springbootmall.constant.ProductCategory;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -9,7 +9,7 @@ public class ProductRequest {
     @NotNull
     private String productName;
 
-    private ProdutCategory category;
+    private ProductCategory category;
     @NotNull
     private String imageUrl;
     @NotNull
@@ -26,11 +26,11 @@ public class ProductRequest {
         this.productName = productName;
     }
 
-    public ProdutCategory getCategory() {
+    public ProductCategory getCategory() {
         return category;
     }
 
-    public void setCategory(ProdutCategory category) {
+    public void setCategory(ProductCategory category) {
         this.category = category;
     }
 

@@ -1,5 +1,6 @@
 package com.wayneyeh.springbootmall.controller;
 
+import com.wayneyeh.springbootmall.constant.ProductCategory;
 import com.wayneyeh.springbootmall.dto.ProductRequest;
 import com.wayneyeh.springbootmall.model.Product;
 import com.wayneyeh.springbootmall.service.ProdcutService;
@@ -18,8 +19,11 @@ public class ProductController {
     ProdcutService prodcutService;
 
     @GetMapping("/products") //一定要加s
-    public ResponseEntity<List<Product>> getProducts(){
-        List<Product> productList = prodcutService.getProducts();
+    public ResponseEntity<List<Product>> getProducts(
+            @RequestParam(required = false) ProductCategory category, //如果只使用@RequestParam 會是必選
+            @RequestParam(required = false) String search
+    ){
+        List<Product> productList = prodcutService.getProducts(category, search);
 
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }

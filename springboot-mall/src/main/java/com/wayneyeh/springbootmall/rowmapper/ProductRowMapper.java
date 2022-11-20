@@ -1,7 +1,7 @@
 package com.wayneyeh.springbootmall.rowmapper;
 
 
-import com.wayneyeh.springbootmall.constant.ProdutCategory;
+import com.wayneyeh.springbootmall.constant.ProductCategory;
 import com.wayneyeh.springbootmall.model.Product;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -18,7 +18,7 @@ public class ProductRowMapper implements RowMapper<Product> {
         product.setProductName(resultSet.getString("product_name"));
 
         String categoryStr = resultSet.getString("category");
-        ProdutCategory category = ProdutCategory.valueOf(categoryStr);
+        ProductCategory category = ProductCategory.valueOf(categoryStr);
         product.setCategory(category);
 
         // 可以寫成一行
