@@ -1,6 +1,7 @@
 package com.wayneyeh.springbootmall.controller;
 
 import com.wayneyeh.springbootmall.constant.ProductCategory;
+import com.wayneyeh.springbootmall.dto.ProductQueryParams;
 import com.wayneyeh.springbootmall.dto.ProductRequest;
 import com.wayneyeh.springbootmall.model.Product;
 import com.wayneyeh.springbootmall.service.ProdcutService;
@@ -23,7 +24,11 @@ public class ProductController {
             @RequestParam(required = false) ProductCategory category, //如果只使用@RequestParam 會是必選
             @RequestParam(required = false) String search
     ){
-        List<Product> productList = prodcutService.getProducts(category, search);
+        ProductQueryParams productQueryParams = new ProductQueryParams();
+        productQueryParams.setCategory(category);
+        productQueryParams.setSearch(search); // 統一整理到productQueryParams 作為變數, 如果之後新增查詢條件直接從這裡修改即可
+
+        List<Product> productList = prodcutService.getProducts(productQueryParams);
 
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }
