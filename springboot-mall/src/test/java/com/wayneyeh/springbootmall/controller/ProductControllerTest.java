@@ -78,7 +78,6 @@ public class ProductControllerTest {
                 .andExpect(MockMvcResultMatchers.status().is(201))
                 .andExpect(jsonPath("$.productName", equalTo("test food")));
 
-
     }
 
     @Test

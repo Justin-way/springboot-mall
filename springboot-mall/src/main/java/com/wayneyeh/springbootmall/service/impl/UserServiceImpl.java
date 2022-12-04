@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.server.ResponseStatusException;
 
 @Component
@@ -30,6 +31,11 @@ public class UserServiceImpl implements UserService {
 
         }
 
+        //use md5
+        String hashedpassword = DigestUtils.md5DigestAsHex(userRegisterRequest.getPassword().getBytes());
+        userRegisterRequest.setPassword(hashedpassword);
+
+
         //create account
         return userDao.createUser(userRegisterRequest);
     }
@@ -42,13 +48,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(UserLoginRequest userLoginRequest) {
 
+
+        //check it exist
         User user = userDao.getUserByEmail(userLoginRequest.getEmail());
         if (user == null) {
             logger.warn("this email{} has not been register", userLoginRequest.getEmail());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
-        if (user.getPassword().equals(userLoginRequest.getPassword())) {
+        //use md5
+
+
+        String hashedPassword = DigestUtils.md5DigestAsHex(userLoginRequest.getPassword().getBytes());
+
+        //check password
+        if (user.getPassword().equals(hashedPassword)) {
             return user;
         } else {
             logger.warn("this email{} password is not correct", userLoginRequest.getEmail());
