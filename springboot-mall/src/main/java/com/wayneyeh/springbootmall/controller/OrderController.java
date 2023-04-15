@@ -6,10 +6,11 @@ import com.wayneyeh.springbootmall.service.OrderService;
 import com.wayneyeh.springbootmall.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.wayneyeh.springbootmall.model.Order;
-
+import org.springframework.http.HttpHeaders;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -48,8 +49,11 @@ public class OrderController {
         page.setOffset(offset);
         page.setTotal(count);
         page.setResults(orderList);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "http://localhost"); // 這裡的 "http://localhost" 要改成您前端網頁的網址
 
-        return ResponseEntity.status(HttpStatus.OK).body(page);
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(headers).body(page);
 
     }
 
