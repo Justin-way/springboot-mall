@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>購買商品</title>
+</head>
+<body>
+<div>
+  <h1>購買商品</h1>
+  <form>
+    <label for="productId">商品 ID:</label>
+    <input type="text" id="productId">
+    <label for="quantity">數量:</label>
+    <input type="text" id="quantity">
+    <button type="button" onclick="addToCart()">加入購物車</button>
+  </form>
+  <table id="cartTable">
+    <thead>
+    <tr>
+      <th>商品 ID</th>
+      <th>數量</th>
+    </tr>
+    </thead>
+    <tbody id="cartTableBody">
+    </tbody>
+  </table>
+  <button type="button" onclick="checkout()">結帳</button>
+</div>
+<script>
+  let cart = [];
+  const userId = "6"; // 使用者 ID，這裡假設為 "6"
+
+  function addToCart() {
+    const productId = document.getElementById("productId").value;
+    const quantity = document.getElementById("quantity").value;
+    const item = { productId, quantity };
+    cart.push(item);
+    renderCart();
+  }
+
+  function renderCart() {
+    const tableBody = document.getElementById("cartTableBody");
+    tableBody.innerHTML = "";
+    cart.forEach(item => {
+      const tr = document.createElement("tr");
+      const tdProductId = document.createElement("td");
+      const tdQuantity = document.createElement("td");
+
+      tdProductId.innerText = item.productId;
+      tdQuantity.innerText = item.quantity;
+
+      tr.appendChild(tdProductId);
+      tr.appendChild(tdQuantity);
+
+      tableBody.appendChild(tr);
+    });
+  }
+
+  function checkout() {
+    const buyItemList = cart.map(item => {
+      return { productId: item.productId, quantity: item.quantity };
+    });
+
+    const apiUrl = `http://localhost:8080/users/${userId}/orders`;
+
+    fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ buyItemList })
+    })
+            .then(response => response.json())
+            .then(data => {
+              alert("結帳成功!");
+              cart = [];
+              renderCart();
+            })
+            .catch(error => console.error(error));
+  }
+</script>
+</body>
+</html>

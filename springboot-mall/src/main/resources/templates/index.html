@@ -1,69 +1,15 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link th:href="@{https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.2/dist/css/themes/splide-default.min.css}" rel="stylesheet" type="text/css" />
-  <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
-  <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
-  <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
-  <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
-  <link th:href="@{https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap}" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>購買商品和使用者訂單查詢</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-
 <body>
-
-  <section>
-    <div class="section-title">
-
-    </div>
-    <div class="product-wrapper" id="product-wrapper">
-
-    </div>
-    <template id="card-template">
-      <div class="card">
-        <div class="img-container">
-          <img id="thumbnail"/>
-          <div class="hot-tag" id="hot-tag">HOT</div>
-        </div>
-        <span class="title" id="title">
-
-        </span>
-        <span class="subtitle" id="subtitle">
-
-        </span>
-        <span class="price" id="price">
-
-        </span>
-      </div>
-    </template>
-  </section>
-
-<!--   <script type="text/template">
-    <template id="card-template">
-      <div class="card">
-        <div class="img-container">
-          <div class="hot-tag" id="hot-tag">HOT</div>
-          <img id="thumbnail"/>
-        </div>
-        <span class="title" id="title">
-
-        </span>
-        <span class="subtitle" id="subtitle">
-
-        </span>
-        <span class="price" id="price">
-
-        </span>
-      </div>
-    </template>
-  </script> -->
-  <script th:src="@{https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.2/dist/js/splide.min.js}"></script>
-  <script th:src="@{/js/script.js}"></script>
-  <link th:href="@{/css/test.css}" rel="stylesheet" type="text/css" />
-
+<h1>韋恩電商</h1>
+<ul>
+  <li><a href="./create_order">購買商品</a></li>
+  <li><a href="./query_order">使用者訂單查詢</a></li>
+</ul>
 </body>
-
 </html>

@@ -1,0 +1,37 @@
+/* 設定頁面樣式 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+}
+
+/* 設定標題樣式 */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* 設定列表樣式 */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* 設定列表項目樣式 */
+li {
+    margin: 10px;
+    padding: 5px;
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+/* 設定連結樣式 */
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+/* 設定滑鼠懸停時連結樣式 */
+a:hover {
+    text-decoration: underline;
+}

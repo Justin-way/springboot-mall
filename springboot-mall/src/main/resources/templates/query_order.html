@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>使用者訂單查詢</title>
+</head>
+<body>
+  <div>
+    <h1>使用者訂單查詢</h1>
+    <form>
+      <label for="userId">使用者 ID：</label>
+      <input type="text" id="userId">
+      <button type="button" onclick="fetchOrders()">查詢</button>
+    </form>
+    <table id="orderTable">
+      <thead>
+        <tr>
+          <th>訂單 ID</th>
+          <th>使用者 ID</th>
+          <th>總金額</th>
+          <th>建立日期</th>
+          <th>最後修改日期</th>
+        </tr>
+      </thead>
+      <tbody id="orderTableBody">
+      </tbody>
+    </table>
+  </div>
+  <script>
+    function fetchOrders() {
+      const userId = document.getElementById("userId").value;
+      const apiUrl = `http://localhost:8080/users/${userId}/orders`;
+      
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          const orders = data.results;
+          const tableBody = document.getElementById("orderTableBody");
+          tableBody.innerHTML = "";
+          orders.forEach(order => {
+            const tr = document.createElement("tr");
+            const tdOrderId = document.createElement("td");
+            const tdUserId = document.createElement("td");
+            const tdTotalAmount = document.createElement("td");
+            const tdCreatedDate = document.createElement("td");
+            const tdLastModifiedDate = document.createElement("td");
+            
+            tdOrderId.innerText = order.orderId;
+            tdUserId.innerText = order.userId;
+            tdTotalAmount.innerText = order.totalAmount;
+            tdCreatedDate.innerText = order.createdDate;
+            tdLastModifiedDate.innerText = order.lastModifiedDate;
+            
+            tr.appendChild(tdOrderId);
+            tr.appendChild(tdUserId);
+            tr.appendChild(tdTotalAmount);
+            tr.appendChild(tdCreatedDate);
+            tr.appendChild(tdLastModifiedDate);
+            
+            tableBody.appendChild(tr);
+          });
+        })
+        .catch(error => console.error(error));
+    }
+  </script>
+</body>
+</html>
