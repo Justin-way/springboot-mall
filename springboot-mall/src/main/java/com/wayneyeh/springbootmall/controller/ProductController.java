@@ -100,6 +100,13 @@ public class ProductController {
 
     @DeleteMapping("/products/{productId}")
     public ResponseEntity<?> deleteProduct(@PathVariable Integer productId){
+
+        Product product = prodcutService.getProductById(productId);
+
+        if (product == null) {
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
         prodcutService.deleteProductById(productId);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
