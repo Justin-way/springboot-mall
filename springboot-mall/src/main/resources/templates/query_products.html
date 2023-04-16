@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>商品列表</title>
+  <style>
+    /* 用於顯示商品圖片的樣式 */
+    .product-image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-right: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+<a href="./">首頁</a>
+<h1>商品列表</h1>
+<div id="product-list"></div>
+
+<script>
+  // 用fetch方法抓取API資料
+  fetch('http://localhost:8080/products')
+          .then(response => response.json())
+          .then(data => {
+            // 抓到資料後顯示在畫面上
+            const productList = data.results;
+            const productDiv = document.getElementById('product-list');
+            for(let i = 0; i < productList.length; i++) {
+              const product = productList[i];
+              const productCard = document.createElement('div');
+              productCard.innerHTML = `
+						<img class="product-image" src="${product.imageUrl}" alt="${product.productName}">
+						<h2>${product.productName}</h2>
+						<p>類別：${product.category}</p>
+						<p>編號：${product.productId}</p>
+					`;
+              productDiv.appendChild(productCard);
+            }
+          })
+          .catch(error => console.error(error));
+</script>
+</body>
+</html>

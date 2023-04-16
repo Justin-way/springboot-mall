@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>更新商品</title>
+</head>
+<body>
+<a href="./">首頁</a>
+<h1>更新商品</h1>
+<form>
+  <label for="productId">商品ID:</label>
+  <input type="text" id="productId">
+  <br>
+  <label for="productName">商品名稱:</label>
+  <input type="text" id="productName">
+  <br>
+  <label for="imageUrl">圖片連結:</label>
+  <input type="text" id="imageUrl">
+  <br>
+  <label for="category">類別:</label>
+  <select id="category" name="category">
+    <option value="CAR">汽車</option>
+    <option value="E_BOOK">書本</option>
+    <option value="FOOD">食物</option>
+
+  </select>
+  <br>
+  <label for="price">價格:</label>
+  <input type="number" id="price">
+  <br>
+  <label for="stock">庫存:</label>
+  <input type="number" id="stock">
+  <br>
+  <input type="submit" value="更新">
+</form>
+
+<div id="result"></div>
+
+<script>
+  const form = document.querySelector('form');
+  const resultDiv = document.getElementById('result');
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const productId = document.getElementById('productId').value;
+    const productName = document.getElementById('productName').value;
+    const imageUrl = document.getElementById('imageUrl').value;
+    const category = document.getElementById('category').value;
+    const price = document.getElementById('price').value;
+    const stock = document.getElementById('stock').value;
+
+    fetch(`/products/${productId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        productName,
+        imageUrl,
+        category,
+        price,
+        stock
+      })
+    })
+            .then(response => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error('更新商品失敗');
+              }
+            })
+            .then(updatedProduct => {
+              const resultHtml = `
+        <h2>更新成功</h2>
+        <p>商品名稱: ${updatedProduct.productName}</p>
+        <p>類別: ${updatedProduct.category}</p>
+        <img src="${updatedProduct.imageUrl}" alt="${updatedProduct.productName}">
+        <p>價格: ${updatedProduct.price}</p>
+        <p>庫存: ${updatedProduct.stock}</p>
+      `;
+              resultDiv.innerHTML = resultHtml;
+            })
+            .catch(error => {
+              const errorHtml = `
+        <h2>更新失敗</h2>
+        <p>${error.message}</p>
+      `;
+              resultDiv.innerHTML = errorHtml;
+            });
+  });
+</script>
+</body>
+</html>

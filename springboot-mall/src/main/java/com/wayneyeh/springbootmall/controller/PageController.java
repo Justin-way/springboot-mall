@@ -2,7 +2,6 @@ package com.wayneyeh.springbootmall.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PageController {
@@ -21,4 +20,28 @@ public class PageController {
         return "create_order";
     }
 
+    @GetMapping("/query_products")
+    public String getProducts(){
+        return "query_products";
+    }
+
+
+    @GetMapping("/query_product")
+    public String getProduct(){
+        return "query_product";
+    }
+
+    @GetMapping("/create_product")
+    public String createProduct(){
+        return "create_product";
+    }
+    @GetMapping("/update_product")
+    public String updateProduct(){
+        return "update_product";
+    }
+
+    @GetMapping("/delete_product")
+    public String deleteProduct(){
+        return "delete_product";
+    }
 }

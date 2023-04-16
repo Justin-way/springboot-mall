@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>刪除商品</title>
+</head>
+<body>
+<a href="./">首頁</a>
+<h1>刪除商品</h1>
+<label for="productId">商品編號：</label>
+<input type="number" id="productId" name="productId">
+<button type="button" onclick="deleteProduct()">刪除</button>
+
+<script>
+  function deleteProduct() {
+    const productId = document.getElementById('productId').value;
+
+    fetch(`/products/${productId}`, {
+      method: 'DELETE',
+    })
+            .then(response => {
+              if (response.status === 204) {
+                alert('刪除成功');
+              } else if (response.status === 404) {
+                alert('找不到該商品');
+              } else {
+                alert('刪除失敗');
+              }
+            })
+            .catch(error => console.error(error));
+  }
+</script>
+</body>
+</html>

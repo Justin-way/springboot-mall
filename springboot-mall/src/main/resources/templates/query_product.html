@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>商品詳情</title>
+</head>
+<body>
+<a href="./">首頁</a>
+<h1>商品詳情</h1>
+<label for="productId">商品編號：</label>
+<input type="text" id="productId" name="productId">
+<button type="button" onclick="fetchProduct()">查詢</button>
+<br>
+<br>
+<div id="product"></div>
+<script>
+  function fetchProduct() {
+    const productId = document.getElementById('productId').value.trim();
+    if (!productId) {
+      alert('請輸入商品編號');
+      return;
+    }
+
+    fetch(`/products/${productId}`)
+            .then(response => response.json())
+            .then(product => {
+              const productHtml = `
+          <h2>${product.productName}</h2>
+          <p>類別：${product.category}</p>
+          <img src="${product.imageUrl}" alt="${product.productName}">
+          <p>價格：${product.price}</p>
+          <p>庫存：${product.stock}</p>
+          <p>描述：${product.description || '暫無描述'}</p>
+          <p>創建時間：${product.createDate}</p>
+          <p>最後修改時間：${product.lastModifiedDate}</p>
+        `;
+              document.getElementById('product').innerHTML = productHtml;
+            })
+            .catch(error => {
+              alert('查詢商品失敗');
+              console.error(error);
+            });
+  }
+</script>
+</body>
+</html>

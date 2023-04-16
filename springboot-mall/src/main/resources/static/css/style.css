@@ -1,37 +1,65 @@
-/* 設定頁面樣式 */
 body {
     font-family: Arial, sans-serif;
     background-color: #f1f1f1;
 }
 
-/* 設定標題樣式 */
 h1 {
     text-align: center;
     color: #333;
+    font-size: 48px;
+    margin-top: 50px;
 }
 
-/* 設定列表樣式 */
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-/* 設定列表項目樣式 */
 li {
     margin: 10px;
-    padding: 5px;
-    background-color: #ddd;
+    padding: 15px;
+    background-color: #ebebeb;
     border-radius: 5px;
+    box-shadow: 1px 1px 5px #ccc;
 }
 
-/* 設定連結樣式 */
 a {
     color: #333;
     text-decoration: none;
 }
 
-/* 設定滑鼠懸停時連結樣式 */
 a:hover {
     text-decoration: underline;
 }
+
+footer {
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+    margin-top: 50px;
+}
+
+a.buy-link {
+    color: #fff;
+    background-color: #0066cc;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+a.buy-link:hover {
+    background-color: #004499;
+    box-shadow: 1px 1px 5px #ccc;
+}
+
+/* 新增的 CSS */
+ul ul {
+    display: none;
+}
+
+ul li:hover > ul {
+    display: block;
+}
+
