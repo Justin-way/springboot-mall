@@ -62,7 +62,7 @@
       return { productId: item.productId, quantity: item.quantity };
     });
 
-    const apiUrl = `http://localhost:8080/users/${userId}/orders`;
+    const apiUrl = `/users/${userId}/orders`;
 
     fetch(apiUrl, {
       method: "POST",

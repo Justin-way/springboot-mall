@@ -30,7 +30,7 @@
   <script>
     function fetchOrders() {
       const userId = document.getElementById("userId").value;
-      const apiUrl = `http://localhost:8080/users/${userId}/orders`;
+      const apiUrl = `users/${userId}/orders`;
       
       fetch(apiUrl)
         .then(response => response.json())

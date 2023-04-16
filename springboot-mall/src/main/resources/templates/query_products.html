@@ -22,7 +22,7 @@
 
 <script>
   // 用fetch方法抓取API資料
-  fetch('http://localhost:8080/products')
+  fetch('/products')
           .then(response => response.json())
           .then(data => {
             // 抓到資料後顯示在畫面上
