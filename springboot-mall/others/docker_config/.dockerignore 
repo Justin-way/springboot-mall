@@ -1,0 +1,8 @@
+target/*.war
+target/*.ear
+target/*-sources.jar
+target/test-classes/
+*.iml
+*.idea
+*.git
+logs/

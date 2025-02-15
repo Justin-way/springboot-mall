@@ -1,0 +1,35 @@
+--------------------
+docker stop docker-container
+docker rm docker-container
+docker rmi docker-app
+---------------------
+
+docker stop docker-container
+docker start docker-container
+docker logs docker-container
+
+-------------
+mvn clean install
+docker build -t docker-app .
+docker stop docker-container
+docker rm docker-container
+docker run -d -p 8080:8080 --name docker-container docker-app
+--------------
+
+docker network create my-network
+docker run -d --name postgres-container --network my-network -e POSTGRES_PASSWORD=root -e POSTGRES_DB=hrdb -p 5432:5432 postgres
+
+
+---------------------------
+
+docker stop docker-container
+docker stop postgres-container
+
+docker network connect my-network docker-container
+docker network connect my-network postgres-container
+
+docker start docker-container
+docker start postgres-container
+--------------------------
+
+
